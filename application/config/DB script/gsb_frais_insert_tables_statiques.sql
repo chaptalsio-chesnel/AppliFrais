@@ -6,9 +6,8 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE IF NOT EXISTS `gsb_frais` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `gsb_frais`;
 
+TRUNCATE TABLE `etat`;
 INSERT INTO `etat` (`id`, `libelle`) VALUES
 ('CL', 'Fiche Signée, saisie clôturée'),
 ('CR', 'Fiche créée, saisie en cours'),
@@ -16,6 +15,7 @@ INSERT INTO `etat` (`id`, `libelle`) VALUES
 ('RB', 'Remboursée'),
 ('VA', 'Validée');
 
+TRUNCATE TABLE `fichefrais`;
 INSERT INTO `fichefrais` (`idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
 ('a131', '201604', 0, '0.00', '2016-09-20', 'CR'),
 ('a131', '201605', 0, '0.00', '2016-09-20', 'CR'),
@@ -25,12 +25,14 @@ INSERT INTO `fichefrais` (`idVisiteur`, `mois`, `nbJustificatifs`, `montantValid
 ('a131', '201609', 0, '0.00', '2016-09-20', 'CR'),
 ('a131', '201610', 0, '951.00', '2016-10-04', 'CL');
 
+TRUNCATE TABLE `fraisforfait`;
 INSERT INTO `fraisforfait` (`id`, `libelle`, `montant`) VALUES
 ('ETP', 'Forfait Etape', '110.00'),
 ('KM', 'Frais Kilométrique', '0.62'),
 ('NUI', 'Nuitée Hôtel', '80.00'),
 ('REP', 'Repas Restaurant', '25.00');
 
+TRUNCATE TABLE `lignefraisforfait`;
 INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quantite`, `montantApplique`) VALUES
 ('a131', '201604', 'ETP', 0, '110.00'),
 ('a131', '201604', 'KM', 0, '0.62'),
@@ -61,9 +63,11 @@ INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quanti
 ('a131', '201610', 'NUI', 2, '80.00'),
 ('a131', '201610', 'REP', 4, '25.00');
 
+TRUNCATE TABLE `lignefraishorsforfait`;
 INSERT INTO `lignefraishorsforfait` (`id`, `idVisiteur`, `mois`, `libelle`, `date`, `montant`) VALUES
 (1, 'a131', '201610', 'yey', '1996-12-12', '550.00');
 
+TRUNCATE TABLE `visiteur`;
 INSERT INTO `visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`, `Comptable`) VALUES
 ('a131', 'Villachane', 'Louis', 'lvillachane', 'jux7g', '8 rue des Charmes', '46000', 'Cahors', '2005-12-21', 0),
 ('a17', 'Andre', 'David', 'dandre', 'oppg5', '1 rue Petit', '46200', 'Lalbenque', '1998-11-23', 0),

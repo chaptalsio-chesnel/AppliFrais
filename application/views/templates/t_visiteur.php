@@ -12,7 +12,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<link href="<?php echo $v_path.'/templates/css/styles.css'?>" rel="stylesheet" type="text/css" />
 
-		<script language="JavaScript">
+		<script type="JavaScript">
 			function hideNotify() {
 				document.getElementById("notify").style.display = "none";
 			}
@@ -38,15 +38,15 @@
 						Visiteur :<br/>
 						<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
 					</li>
-					<br/>
-					<li class="smenu">
+
+					<li>
 						<?php echo anchor('c_visiteur/', 'Accueil', 'title="Page d\'accueil"'); ?>
 					</li>
-					<li class="smenu">
+					<li>
 						<?php echo anchor('c_visiteur/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
 					</li>
-					<br/>
-					<li class="smenu">
+
+					<li>
 						<?php echo anchor('c_visiteur/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
 					</li>
 				</ul>
@@ -60,7 +60,17 @@
 			</div>
 
 		</div>    
-
+<p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+      src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
+  </p>
+  <p>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="CSS Valide !" />
+    </a>
+</p>
 	</body>
 </html>
 

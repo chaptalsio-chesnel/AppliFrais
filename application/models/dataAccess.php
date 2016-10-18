@@ -20,13 +20,29 @@ class DataAccess extends CI_Model {
 	 * @return l'id, le nom et le prénom sous la forme d'un tableau associatif 
 	*/
 	public function getInfosVisiteur($login, $mdp){
-		$req = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom 
+		$req = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom ,visiteur.Comptable as Comptable
 				from visiteur 
 				where visiteur.login=? and visiteur.mdp=?";
 		$rs = $this->db->query($req, array ($login, $mdp));
 		$ligne = $rs->first_row('array'); 
 		return $ligne;
 	}
+	/**
+	 * Retourne les informations d'un visiteur
+	 *
+	 * @param $login
+	 * @param $mdp
+	 * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
+	 */
+	public function getCompVisiteur($login, $mdp){
+		$req = "select visiteur.comptable as comp
+				from visiteur
+				where visiteur.login=? and visiteur.mdp=?";
+		$rs = $this->db->query($req, array ($login, $mdp));
+		$ligne = $rs->first_row('array');
+		return $ligne;
+	}
+	
 
 	/**
 	 * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
@@ -89,6 +105,7 @@ class DataAccess extends CI_Model {
 		$lesLignes = $rs->result_array();
 		return $lesLignes; 
 	}
+	
 		
 	/**
 	 * Retourne tous les FraisForfait

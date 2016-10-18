@@ -1,6 +1,7 @@
-ï»¿<?php
-	$this->load->helper('url');
-	$v_path = base_url('application/views');
+
+<?php
+$this->load->helper('url');
+$v_path = base_url('application/views');
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -24,7 +25,7 @@
 		<div id="page">
 			<div id="entete">
 				<img src="<?php echo $v_path.'/templates/images/logo.jpg'?>" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />
-				<h1>Gestion des frais de dÃ©placements</h1>
+				<h1>Gestion des frais de déplacements</h1>
 			</div>
 			
 			<!-- Division pour le menu -->
@@ -35,19 +36,19 @@
 				
 				<ul id="menuList">
 					<li>
-						Visiteur :<br/>
+						comptable :<br/>
 						<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
 					</li>
 
 					<li>
-						<?php echo anchor('c_visiteur/', 'Accueil', 'title="Page d\'accueil"'); ?>
+						<?php echo anchor('c_comptable/', 'Accueil', 'title="Page d\'accueil"'); ?>
 					</li>
 					<li>
-						<?php echo anchor('c_visiteur/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
+						<?php echo anchor('c_comptable/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
 					</li>
 
 					<li>
-						<?php echo anchor('c_visiteur/deconnecter', 'Se dÃ©connecter', 'title="DÃ©connexion"'); ?>
+						<?php echo anchor('c_comptable/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
 					</li>
 				</ul>
 				

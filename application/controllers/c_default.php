@@ -18,6 +18,7 @@ class C_default extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('authentif');
+		$this->load->model('dataAccess');
 		
 		if (!$this->authentif->estConnecte()) 
 		{
@@ -29,11 +30,13 @@ class C_default extends CI_Controller {
 			$login = $this->input->post('login');
 			$mdp = $this->input->post('mdp');
 			$compt=$this->dataAccess->getCompVisiteur($login, $mdp);
+			
 			$this->load->helper('url');
+			$compt = $compt['comp'];
 			if($compt==0){
 				redirect('/c_visiteur/');
 			}
-			else{
+			else if($compt==1){
 				redirect('/c_comptable/');
 			}
 		}

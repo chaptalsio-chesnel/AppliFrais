@@ -32,7 +32,7 @@ class DataAccess extends CI_Model {
 	 *
 	 * @param $login
 	 * @param $mdp
-	 * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
+	 * @return le comptable
 	 */
 	public function getCompVisiteur($login, $mdp){
 		$req = "select visiteur.comptable as comp

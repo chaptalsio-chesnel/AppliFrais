@@ -26,7 +26,9 @@ class C_default extends CI_Controller {
 		}
 		else
 		{
-			$compt=1;
+			$login = $this->input->post('login');
+			$mdp = $this->input->post('mdp');
+			$compt=$this->dataAccess->getCompVisiteur($login, $mdp);
 			$this->load->helper('url');
 			if($compt==0){
 				redirect('/c_visiteur/');

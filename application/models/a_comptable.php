@@ -83,6 +83,7 @@ class A_comptable extends CI_Model {
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 
 		$data['notify'] = $message;
+		$data['util'] = $idVisiteur;
 		$data['numAnnee'] = substr( $mois,0,4);
 		$data['numMois'] = substr( $mois,4,2);
 		$data['lesFraisHorsForfait'] = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);

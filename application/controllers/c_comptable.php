@@ -138,7 +138,7 @@ class C_comptable extends CI_Controller {
 				$this->load->model('a_comptable');
 
 				// obtention de l'id du visiteur et du mois concerné
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[0];
 				$mois = $this->session->userdata('mois');
 
 				// obtention des données postées

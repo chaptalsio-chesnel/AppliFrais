@@ -35,6 +35,7 @@
 					<td class="date">'.$uneFiche['dateModif'].'</td>
 					<td class="action">'.$signeLink.'</td>
 					<td class="action">'.$refusLink.'</td>
+					<td class="action">'.anchor('c_comptable/modCompFiche/'.$uneFiche['mois'].'/'.$uneFiche['idv'], "Modifier",  'title="Modifier la fiche"').'</td>
 				</tr>';
 				}
 				

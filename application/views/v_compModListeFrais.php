@@ -7,7 +7,7 @@
 					
 	<?php if(!empty($notify)) echo '<p id="notify" >'.$notify.'</p>';?>
 	 
-	<form method="post"  action="<?php echo base_url("c_visiteur/majForfait");?>">
+	<form method="post"  action="<?php echo base_url("c_comptable/majForfait");?>">
 		<div class="corpsForm">
 		  
 			<fieldset>
@@ -60,7 +60,7 @@
 					<td class="libelle">'.$libelle.'</td>
 					<td class="montant">'.$montant.'</td>
 					<td class="action">'.
-					anchor(	"c_visiteur/supprFrais/$id", 
+					anchor(	"c_comptable/supprFrais/$id", 
 							"Supprimer ce frais", 
 							'title="Suppression d\'une ligne de frais" onclick="return confirm(\'Voulez-vous vraiment supprimer ce frais ?\');"'
 						).
@@ -71,7 +71,7 @@
                                           
     </table>
 
-	<form method="post" action="<?php echo base_url("c_visiteur/ajouteFrais");?>">
+	<form method="post" action="<?php echo base_url("c_comptable/ajouteFrais");?>">
 		<div class="corpsForm">
 			<fieldset>
 				<legend>Nouvel élément hors forfait</legend>

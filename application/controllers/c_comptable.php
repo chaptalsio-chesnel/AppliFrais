@@ -147,7 +147,7 @@ class C_comptable extends CI_Controller {
 				$this->a_comptable->majForfait($idVisiteur, $mois, $lesFrais);
 
 				// ... et on revient en modification de la fiche
-				$this->a_comptable->modFiche($idVisiteur, $mois, 'Modification(s) des éléments forfaitisés enregistrée(s) ...');
+				$this->a_comptable->modCompFiche($idVisiteur, $mois, 'Modification(s) des éléments forfaitisés enregistrée(s) ...');
 			}
 			elseif ($action == 'ajouteFrais') // ajouteLigneFrais demandé : on active la fonction ajouteLigneFrais du modèle visiteur ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs

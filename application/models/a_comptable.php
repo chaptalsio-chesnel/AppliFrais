@@ -44,14 +44,14 @@ class A_comptable extends CI_Model {
 	 * @param $idVisiteur : l'id du visiteur 
 	 * @param $message : message facultatif destiné à notifier l'utilisateur du résultat d'une action précédemment exécutée
 	*/
-	public function mesFiches ($idVisiteur, $message=null)
+	public function lesFiches ($idVisiteur, $message=null)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 	
 		$idVisiteur = $this->session->userdata('idUser');
 
 		$data['notify'] = $message;
-		$data['mesFiches'] = $this->dataAccess->getFiches($idVisiteur);		
-		$this->templates->load('t_comptable', 'v_visMesFiches', $data);	
+		$data['lesFiches'] = $this->dataAccess->getLesFiches($idVisiteur);		
+		$this->templates->load('t_comptable', 'v_compLesFiches', $data);	
 	}	
 
 	/**
@@ -79,7 +79,7 @@ class A_comptable extends CI_Model {
 	 * @param $mois : le mois de la fiche à modifier 
 	 * @param $message : message facultatif destiné à notifier l'utilisateur du résultat d'une action précédemment exécutée
 	*/
-	public function modFiche($idVisiteur, $mois, $message=null)
+	public function modCompFiche($idVisiteur, $mois, $message=null)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 
 		$data['notify'] = $message;
@@ -88,7 +88,7 @@ class A_comptable extends CI_Model {
 		$data['lesFraisHorsForfait'] = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
 		$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfait($idVisiteur,$mois);		
 
-		$this->templates->load('t_comptable', 'v_visModListeFrais', $data);
+		$this->templates->load('t_comptable', 'v_compModListeFrais', $data);
 	}
 
 	/**
@@ -104,6 +104,20 @@ class A_comptable extends CI_Model {
 	    $this->dataAccess->signeFiche($idVisiteur, $mois);
 	}
 
+	public function validerFiche($idVisiteur, $mois)
+	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
+	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	
+	$this->dataAccess->validerFiche($idVisiteur, $mois);
+	}
+	
+	public function refuserFiche($idVisiteur, $mois)
+	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
+	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	
+	$this->dataAccess->refuserFiche($idVisiteur, $mois);
+	}
+	
 	/**
 	 * Modifie les quantités associées aux frais forfaitisés dans une fiche donnée
 	 * 

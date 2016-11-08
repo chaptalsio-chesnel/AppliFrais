@@ -211,6 +211,20 @@ class DataAccess extends CI_Model {
 		if($laFiche['idEtat']=='CR'){
 				$this->majEtatFicheFrais($idVisiteur, $mois,'CL');
 		}
+	}	
+	public function validerFiche($idVisiteur,$mois){
+		//met à 'CL' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='CL'){
+				$this->majEtatFicheFrais($idVisiteur, $mois,'VA');
+		}
+	}
+	public function refuserFiche($idVisiteur,$mois){
+		//met à 'CL' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='CL'){
+			$this->majEtatFicheFrais($idVisiteur, $mois,'CR');
+		}
 	}
 
 	/**
@@ -312,6 +326,20 @@ class DataAccess extends CI_Model {
 				from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id 
 				where fichefrais.idvisiteur = '$idVisiteur'
 				order by mois desc";
+		$rs = $this->db->query($req);
+		$lesFiches = $rs->result_array();
+		return $lesFiches;
+	}
+	/**
+	 * Obtient toutes les fiches (sans détail) d'un visiteur donné
+	 *
+	 * @param $idVisiteur
+	 */
+	public function getLesFiches ($idVisiteur) {
+		$req = "select idVisiteur, mois, montantValide, dateModif, Etat.id, libelle, nom, visiteur.id as idv
+		from  visiteur, fichefrais inner join Etat on ficheFrais.idEtat = Etat.id
+		where visiteur.id = fichefrais.idVisiteur
+		order by nom asc, mois desc";
 		$rs = $this->db->query($req);
 		$lesFiches = $rs->result_array();
 		return $lesFiches;

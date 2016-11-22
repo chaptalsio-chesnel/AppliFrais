@@ -12,11 +12,11 @@
 		<div class="corpsForm">
 		  
 			<fieldset>
-				<legend>Eléments forfaitisés</legend>
+				<legend>ElÃ©ments forfaitisÃ©s</legend>
 				<?php
 					foreach ($lesFraisForfait as $unFrais)
 					{
-						if($unFrais['idfrais']!= "NUI" && $unFrais['idfrais'] != "REP"){ //Pour retiré les nuitée Hotel et le nbr de repas
+						if($unFrais['idfrais']!= "NUI" && $unFrais['idfrais'] != "REP"){ //Pour retirÃ© les nuitÃ©e Hotel et le nbr de repas
 						$idFrais = $unFrais['idfrais'];
 						$libelle = $unFrais['libelle'];
 						$quantite = $unFrais['quantite'];

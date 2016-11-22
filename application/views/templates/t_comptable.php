@@ -25,7 +25,7 @@ $v_path = base_url('application/views');
 		<div id="page">
 			<div id="entete">
 				<img src="<?php echo $v_path.'/templates/images/logo.jpg'?>" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />
-				<h1>Gestion des frais de déplacements</h1>
+				<h1>Gestion des frais de dï¿½placements</h1>
 			</div>
 			
 			<!-- Division pour le menu -->
@@ -51,7 +51,7 @@ $v_path = base_url('application/views');
 					</li>
 
 					<li>
-						<?php echo anchor('c_comptable/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
+						<?php echo anchor('c_comptable/deconnecter', 'Se dÃ©connecter', 'title="Deconnection"'); ?>
 					</li>
 				</ul>
 				

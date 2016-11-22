@@ -29,7 +29,7 @@
 					$refusLink = anchor('c_comptable/refusFiche/'.$uneFiche['mois'].'/'.$uneFiche['idv'], 'refuser',  'title="Refiser la fiche"  onclick="return confirm(\'Voulez-vous vraiment refuser cette fiche ?\');"');
 					echo
 					'<tr>
-					<td class="date">'.anchor('c_comptable/modCompFiche/'.$uneFiche['mois'].'/'.$uneFiche['idv'], $uneFiche['mois'],  'title="Consulter la fiche"').'</td>
+					<td class="date">'.anchor('c_comptable/voirFiche/'.$uneFiche['mois'].'/'.$uneFiche['idv'], $uneFiche['mois'],  'title="Consulter la fiche"').'</td>
 					<td class="libelle">'.$uneFiche['nom'].'</td>
 					<td class="montant">'.$uneFiche['montantValide'].'</td>
 					<td class="date">'.$uneFiche['dateModif'].'</td>

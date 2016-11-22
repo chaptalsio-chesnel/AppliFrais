@@ -53,7 +53,15 @@ class A_comptable extends CI_Model {
 		$data['lesFiches'] = $this->dataAccess->getLesFiches($idVisiteur);		
 		$this->templates->load('t_comptable', 'v_compLesFiches', $data);	
 	}	
-
+	public function lesSuivi ($idVisiteur, $message=null)
+	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
+	
+	$idVisiteur = $this->session->userdata('idUser');
+	
+	$data['notify'] = $message;
+	$data['lesFiches'] = $this->dataAccess->getLesFiches($idVisiteur);
+	$this->templates->load('t_comptable', 'v_compSuiviFiche', $data);
+	}
 	/**
 	 * Présente le détail de la fiche sélectionnée 
 	 * 
@@ -91,6 +99,18 @@ class A_comptable extends CI_Model {
 
 		$this->templates->load('t_comptable', 'v_compModListeFrais', $data);
 	}
+	public function voirCompFiche($idVisiteur, $mois, $message=null)
+	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
+	
+	$data['notify'] = $message;
+	$data['util'] = $idVisiteur;
+	$data['numAnnee'] = substr( $mois,0,4);
+	$data['numMois'] = substr( $mois,4,2);
+	$data['lesFraisHorsForfait'] = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
+	$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfait($idVisiteur,$mois);
+	
+	$this->templates->load('t_comptable', 'v_compVoirFrais', $data);
+	}
 
 	/**
 	 * Signe une fiche de frais en changeant son état
@@ -103,6 +123,18 @@ class A_comptable extends CI_Model {
 		// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
 
 	    $this->dataAccess->signeFiche($idVisiteur, $mois);
+	}
+	public function mpFiche($idVisiteur, $mois)
+	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
+	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	
+	$this->dataAccess->mpFiche($idVisiteur, $mois);
+	}
+	public function rembourserFiche($idVisiteur, $mois)
+	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
+	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	
+	$this->dataAccess->rembourserFiche($idVisiteur, $mois);
 	}
 
 	public function validerFiche($idVisiteur, $mois)

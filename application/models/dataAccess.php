@@ -212,6 +212,20 @@ class DataAccess extends CI_Model {
 				$this->majEtatFicheFrais($idVisiteur, $mois,'CL');
 		}
 	}	
+	public function mpFiche($idVisiteur,$mois){
+		//met à 'CL' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='VA'){
+			$this->majEtatFicheFrais($idVisiteur, $mois,'MP');
+		}
+	}
+	public function rembourserFiche($idVisiteur,$mois){
+		//met à 'CL' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='MP'){
+			$this->majEtatFicheFrais($idVisiteur, $mois,'RB');
+		}
+	}
 	public function validerFiche($idVisiteur,$mois){
 		//met à 'CL' son champs idEtat
 		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);

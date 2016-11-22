@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * ModÃ¨le qui implÃ©mente les fonctions d'accÃ¨s aux donnÃ©es 
+ * ModÃ¨le qui implémente les fonctions d'accÃ¨s aux données 
 */
 class DataAccess extends CI_Model {
-// TODO : Transformer toutes les requÃªtes en requÃªtes paramÃ©trÃ©es
+// TODO : Transformer toutes les requÃªtes en requÃªtes paramétrées
 
     function __construct()
     {
@@ -17,7 +17,7 @@ class DataAccess extends CI_Model {
 	 * 
 	 * @param $login 
 	 * @param $mdp
-	 * @return l'id, le nom et le prÃ©nom sous la forme d'un tableau associatif 
+	 * @return l'id, le nom et le prénom sous la forme d'un tableau associatif 
 	*/
 	public function getInfosVisiteur($login, $mdp){
 		$req = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom ,visiteur.Comptable as Comptable
@@ -46,9 +46,9 @@ class DataAccess extends CI_Model {
 
 	/**
 	 * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
-	 * concernÃ©es par les deux arguments
-	 * La boucle foreach ne peut Ãªtre utilisÃ©e ici car on procÃ¨de
-	 * Ã  une modification de la structure itÃ©rÃ©e - transformation du champ date-
+	 * concernées par les deux arguments
+	 * La boucle foreach ne peut Ãªtre utilisée ici car on procÃ¨de
+	 * Ã  une modification de la structure itérée - transformation du champ date-
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
@@ -72,7 +72,7 @@ class DataAccess extends CI_Model {
 	}
 		
 	/**
-	 * Retourne le nombre de justificatif d'un visiteur pour un mois donnÃ©
+	 * Retourne le nombre de justificatif d'un visiteur pour un mois donné
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
@@ -89,11 +89,11 @@ class DataAccess extends CI_Model {
 		
 	/**
 	 * Retourne sous forme d'un tableau associatif toutes les lignes de frais au forfait
-	 * concernÃ©es par les deux arguments
+	 * concernées par les deux arguments
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
-	 * @return l'id, le libelle et la quantitÃ© sous la forme d'un tableau associatif 
+	 * @return l'id, le libelle et la quantité sous la forme d'un tableau associatif 
 	*/
 	public function getLesLignesForfait($idVisiteur, $mois){
 		$req = "select fraisforfait.id as idfrais, fraisforfait.libelle as libelle, lignefraisforfait.quantite as quantite 
@@ -121,11 +121,11 @@ class DataAccess extends CI_Model {
 	
 	/**
 	 * Met Ã  jour la table ligneFraisForfait pour un visiteur et
-	 * un mois donnÃ© en enregistrant les nouveaux montants
+	 * un mois donné en enregistrant les nouveaux montants
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
-	 * @param $lesFrais tableau associatif de clÃ© idFrais et de valeur la quantitÃ© pour ce frais
+	 * @param $lesFrais tableau associatif de clé idFrais et de valeur la quantité pour ce frais
 	*/
 	public function majLignesForfait($idVisiteur, $mois, $lesFrais){
 		$lesCles = array_keys($lesFrais);
@@ -142,7 +142,7 @@ class DataAccess extends CI_Model {
 		
 	/**
 	 * met Ã  jour le nombre de justificatifs de la table ficheFrais
-	 * pour le mois et le visiteur concernÃ©
+	 * pour le mois et le visiteur concerné
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
@@ -156,7 +156,7 @@ class DataAccess extends CI_Model {
 	}
 		
 	/**
-	 * Teste si un visiteur possÃ¨de une fiche de frais pour le mois passÃ© en argument
+	 * Teste si un visiteur possÃ¨de une fiche de frais pour le mois passé en argument
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
@@ -177,9 +177,9 @@ class DataAccess extends CI_Model {
 	}
 	
 	/**
-	 * CrÃ©e une nouvelle fiche de frais et les lignes de frais au forfait pour un visiteur et un mois donnÃ©s
-	 * L'Ã©tat de la fiche est mis Ã  'CR'
-	 * Lles lignes de frais forfait sont affectÃ©es de quantitÃ©s nulles et du montant actuel de FraisForfait
+	 * Crée une nouvelle fiche de frais et les lignes de frais au forfait pour un visiteur et un mois donnés
+	 * L'état de la fiche est mis Ã  'CR'
+	 * Lles lignes de frais forfait sont affectées de quantités nulles et du montant actuel de FraisForfait
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
@@ -199,8 +199,8 @@ class DataAccess extends CI_Model {
 	}
 
 	/**
-	 * Signe une fiche de frais en modifiant son Ã©tat de "CR" Ã  "CL"
-	 * Ne fait rien si l'Ã©tat initial n'est pas "CR"
+	 * Signe une fiche de frais en modifiant son état de "CR" Ã  "CL"
+	 * Ne fait rien si l'état initial n'est pas "CR"
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
@@ -242,7 +242,7 @@ class DataAccess extends CI_Model {
 	}
 
 	/**
-	 * CrÃ©e un nouveau frais hors forfait pour un visiteur un mois donnÃ©
+	 * Crée un nouveau frais hors forfait pour un visiteur un mois donné
 	 * Ã  partir des informations fournies en paramÃ¨tre
 	 * 
 	 * @param $idVisiteur 
@@ -261,7 +261,7 @@ class DataAccess extends CI_Model {
 	}
 		
 	/**
-	 * Supprime le frais hors forfait dont l'id est passÃ© en argument
+	 * Supprime le frais hors forfait dont l'id est passé en argument
 	 * 
 	 * @param $idFrais 
 	*/
@@ -275,7 +275,7 @@ class DataAccess extends CI_Model {
 	 * Retourne les mois pour lesquel un visiteur a une fiche de frais
 	 * 
 	 * @param $idVisiteur 
-	 * @return un tableau associatif de clÃ© un mois -aaaamm- et de valeurs l'annÃ©e et le mois correspondant 
+	 * @return un tableau associatif de clé un mois -aaaamm- et de valeurs l'année et le mois correspondant 
 	*/
 	public function getLesMoisDisponibles($idVisiteur){
 		$req = "select fichefrais.mois as mois 
@@ -300,11 +300,11 @@ class DataAccess extends CI_Model {
 	}
 
 	/**
-	 * Retourne les informations d'une fiche de frais d'un visiteur pour un mois donnÃ©
+	 * Retourne les informations d'une fiche de frais d'un visiteur pour un mois donné
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
-	 * @return un tableau avec des champs de jointure entre une fiche de frais et la ligne d'Ã©tat 
+	 * @return un tableau avec des champs de jointure entre une fiche de frais et la ligne d'état 
 	*/	
 	public function getLesInfosFicheFrais($idVisiteur,$mois){
 		$req = "select ficheFrais.idEtat as idEtat, ficheFrais.dateModif as dateModif, 
@@ -317,11 +317,11 @@ class DataAccess extends CI_Model {
 	}
 
 	/**
-	 * Modifie l'Ã©tat et la date de modification d'une fiche de frais
+	 * Modifie l'état et la date de modification d'une fiche de frais
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
-	 * @param $etat : le nouvel Ã©tat de la fiche 
+	 * @param $etat : le nouvel état de la fiche 
 	 */
 	public function majEtatFicheFrais($idVisiteur,$mois,$etat){
 		$req = "update ficheFrais 
@@ -331,7 +331,7 @@ class DataAccess extends CI_Model {
 	}
 	
 	/**
-	 * Obtient toutes les fiches (sans dÃ©tail) d'un visiteur donnÃ© 
+	 * Obtient toutes les fiches (sans détail) d'un visiteur donné 
 	 * 
 	 * @param $idVisiteur 
 	*/
@@ -345,7 +345,7 @@ class DataAccess extends CI_Model {
 		return $lesFiches;
 	}
 	/**
-	 * Obtient toutes les fiches (sans dÃ©tail) d'un visiteur donnÃ©
+	 * Obtient toutes les fiches (sans détail) d'un visiteur donné
 	 *
 	 * @param $idVisiteur
 	 */
@@ -360,7 +360,7 @@ class DataAccess extends CI_Model {
 	}
 	
 	/**
-	 * Calcule le montant total de la fiche pour un visiteur et un mois donnÃ©s
+	 * Calcule le montant total de la fiche pour un visiteur et un mois donnés
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois
@@ -376,7 +376,7 @@ class DataAccess extends CI_Model {
 		$laLigne = $rs->first_row('array');
 		$totalHF = $laLigne['totalHF'];
 		
-		// obtention du total forfaitisÃ©
+		// obtention du total forfaitisé
 		$req = "select SUM(montantApplique * quantite) as totalF
 				from  lignefraisforfait 
 				where idvisiteur = '$idVisiteur'

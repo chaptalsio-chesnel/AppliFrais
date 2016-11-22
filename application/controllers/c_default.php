@@ -1,17 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Contrôleur par défaut de l'application
- * Si aucune spécification de contrôleur n'est précisée dans l'URL du navigateur
- * c'est le contrôleur par défaut qui sera invoqué. Son rôle est :
+ * Contrôleur par d�faut de l'application
+ * Si aucune sp�cification de contrôleur n'est pr�cis�e dans l'URL du navigateur
+ * c'est le contrôleur par d�faut qui sera invoqu�. Son rôle est :
  * 		+ d'orienter vers le bon contrôleur selon la situation
  * 		+ de traiter le retour du formulaire de connexion 
 */
 class C_default extends CI_Controller {
 
 	/**
-	 * Fonctionnalité par défaut du contrôleur. 
-	 * Vérifie l'existence d'une connexion :
+	 * Fonctionnalit� par d�faut du contrôleur. 
+	 * V�rifie l'existence d'une connexion :
 	 * Soit elle existe et on redirige vers le contrôleur de VISITEUR, 
 	 * soit elle n'existe pas et on envoie la vue de connexion
 	*/
@@ -47,7 +47,7 @@ class C_default extends CI_Controller {
 	 * s'il est reconnu
 	*/
 	public function connecter () 
-	{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs 
+	{	// TODO : conrôler que l'obtention des donn�es post�es ne rend pas d'erreurs 
 
 		$this->load->model('authentif');
 		

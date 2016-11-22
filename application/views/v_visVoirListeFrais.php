@@ -8,7 +8,7 @@
 	<div class="corpsForm">
 	  
 		<fieldset>
-			<legend>ElÃ©ments forfaitisÃ©s</legend>
+			<legend>Eléments forfaitisés</legend>
 			<?php
 				foreach ($lesFraisForfait as $unFrais)
 				{
@@ -30,10 +30,10 @@
 
 	
 	<table class="listeLegere">
-		<caption>Descriptif des Ã©lÃ©ments hors forfait</caption>
+		<caption>Descriptif des éléments hors forfait</caption>
 		<tr>
 			<th >Date</th>
-			<th >LibellÃ©</th>  
+			<th >Libellé</th>  
 			<th >Montant</th>  
 			<th >&nbsp;</th>              
 		</tr>

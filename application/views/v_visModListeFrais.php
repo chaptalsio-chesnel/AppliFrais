@@ -11,7 +11,7 @@
 		<div class="corpsForm">
 		  
 			<fieldset>
-				<legend>ElÃ©ments forfaitisÃ©s</legend>
+				<legend>Eléments forfaitisés</legend>
 				<?php
 					foreach ($lesFraisForfait as $unFrais)
 					{
@@ -39,10 +39,10 @@
 
 	
 	<table class="listeLegere">
-		<caption>Descriptif des Ã©lÃ©ments hors forfait</caption>
+		<caption>Descriptif des éléments hors forfait</caption>
 		<tr>
 			<th >Date</th>
-			<th >LibellÃ©</th>  
+			<th >Libellé</th>  
 			<th >Montant</th>  
 			<th >&nbsp;</th>              
 		</tr>
@@ -74,13 +74,13 @@
 	<form method="post" action="<?php echo base_url("c_visiteur/ajouteFrais");?>">
 		<div class="corpsForm">
 			<fieldset>
-				<legend>Nouvel Ã©lÃ©ment hors forfait</legend>
+				<legend>Nouvel élément hors forfait</legend>
 				<p>
 					<label for="txtDateHF">Date (jj/mm/aaaa): </label>
 					<input type="text" id="txtDateHF" name="dateFrais" size="10" maxlength="10" value=""  />
 				</p>
 				<p>
-					<label for="txtLibelleHF">LibellÃ©</label>
+					<label for="txtLibelleHF">Libellé</label>
 					<input type="text" id="txtLibelleHF" name="libelle" size="60" maxlength="256" value="" />
 				</p>
 				<p>

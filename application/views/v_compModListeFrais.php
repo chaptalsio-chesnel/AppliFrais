@@ -3,7 +3,7 @@
 ?>
 
 <div id="contenu">
-	<h2>Renseigner ma fiche de frais du mois <?php echo $numMois."-".$numAnnee; ?></h2>
+	<h2>Modifier la fiche frais du mois <?php echo $numMois."-".$numAnnee; ?></h2>
 					
 	<?php if(!empty($notify)) echo '<p id="notify" >'.$notify.'</p>';
 	?>
@@ -12,7 +12,7 @@
 		<div class="corpsForm">
 		  
 			<fieldset>
-				<legend>ElÃ©ments forfaitisÃ©s</legend>
+				<legend>Eléments forfaitisés</legend>
 				<?php
 					foreach ($lesFraisForfait as $unFrais)
 					{

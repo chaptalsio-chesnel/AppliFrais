@@ -47,7 +47,7 @@ $v_path = base_url('application/views');
 						<?php echo anchor('c_comptable/lesFiches', 'Les fiches de frais', 'title="Consultation des fiches de frais"'); ?>
 					</li>
 					<li>
-						<?php echo anchor('c_comptable/lesSuivi', 'Suivis des fiche', 'title="Suivis des fiches de frais"'); ?>
+						<?php echo anchor('c_comptable/lesSuivi', 'Suivi des fiches', 'title="Suivis des fiches de frais"'); ?>
 					</li>
 
 					<li>

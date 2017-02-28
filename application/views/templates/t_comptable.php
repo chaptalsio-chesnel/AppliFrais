@@ -18,10 +18,11 @@ $v_path = base_url('application/views');
 				document.getElementById("notify").style.display = "none";
 			}
 		</script>
+		<script src="<?php echo js_url('fonctions.js'); ?>" ></script>
 		
 	</head>
 
-	<body onload="setTimeout(hideNotify,7000);">
+	<body onload="start();">
 		<div id="page">
 			<div id="entete">
 				<img src="<?php echo $v_path.'/templates/images/logo.jpg'?>" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />

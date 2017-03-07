@@ -35,7 +35,7 @@ INSERT INTO `etat` (`id`, `libelle`) VALUES
 -- Contenu de la table `fichefrais`
 --
 
-INSERT INTO `fichefrais` (`idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
+INSERT INTO `fichefrais` (`idUtilisateur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
 ('a131', '201604', 0, '0.00', '2016-09-20', 'CR'),
 ('a131', '201605', 0, '0.00', '2016-09-20', 'CR'),
 ('a131', '201606', 0, '0.00', '2016-09-20', 'CR'),
@@ -66,7 +66,7 @@ INSERT INTO `fraisforfait` (`id`, `libelle`, `montant`) VALUES
 -- Contenu de la table `lignefraisforfait`
 --
 
-INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quantite`, `montantApplique`) VALUES
+INSERT INTO `lignefraisforfait` (`idUtilisateur`, `mois`, `idFraisForfait`, `quantite`, `montantApplique`) VALUES
 ('a131', '201604', 'ETP', 0, '110.00'),
 ('a131', '201604', 'KM', 0, '0.62'),
 ('a131', '201604', 'NUI', 0, '80.00'),
@@ -132,7 +132,7 @@ INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quanti
 -- Contenu de la table `lignefraishorsforfait`
 --
 
-INSERT INTO `lignefraishorsforfait` (`id`, `idVisiteur`, `mois`, `libelle`, `date`, `montant`) VALUES
+INSERT INTO `lignefraishorsforfait` (`id`, `idUtilisateur`, `mois`, `libelle`, `date`, `montant`) VALUES
 (1, 'a131', '201610', 'yey', '1996-12-12', '550.00');
 
 --
@@ -147,7 +147,7 @@ INSERT INTO `statut` (`idStatut`, `libelleStatut`) VALUES
 -- Contenu de la table `visiteur`
 --
 
-INSERT INTO `visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`, `comptable`) VALUES
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`, `comptable`) VALUES
 ('a131', 'Villachane', 'Louis', 'lvillachane', 'jux7g', '8 rue des Charmes', '46000', 'Cahors', '2005-12-21', 1),
 ('a17', 'Andre', 'David', 'dandre', 'oppg5', '1 rue Petit', '46200', 'Lalbenque', '1998-11-23', 0),
 ('a55', 'Bedos', 'Christian', 'cbedos', 'gmhxd', '1 rue Peranud', '46250', 'Montcuq', '1995-01-12', 0),

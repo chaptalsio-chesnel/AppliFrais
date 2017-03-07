@@ -65,7 +65,7 @@ class Authentif extends CI_Model {
 	
 		$this->load->model('dataAccess');
 
-		$authUser = $this->dataAccess->getInfosVisiteur($login, $mdp);
+		$authUser = $this->dataAccess->getInfosUtilisateur($login, $mdp);
 
 		return $authUser;
 	}

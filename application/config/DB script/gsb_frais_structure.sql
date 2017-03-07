@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS `etat` (
 --
 
 CREATE TABLE IF NOT EXISTS `fichefrais` (
-  `idVisiteur` char(4) NOT NULL,
+  `idutilisateur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `nbJustificatifs` int(11) DEFAULT NULL,
   `montantValide` decimal(10,2) DEFAULT NULL,
   `dateModif` date DEFAULT NULL,
   `idEtat` char(2) DEFAULT 'CR',
-  PRIMARY KEY (`idVisiteur`,`mois`),
+  PRIMARY KEY (`idutilisateur`,`mois`),
   KEY `fichefrais_ibfk_1` (`idEtat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -69,12 +69,12 @@ CREATE TABLE IF NOT EXISTS `fraisforfait` (
 --
 
 CREATE TABLE IF NOT EXISTS `lignefraisforfait` (
-  `idVisiteur` char(4) NOT NULL,
+  `idutilisateur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `idFraisForfait` char(3) NOT NULL,
   `quantite` int(11) DEFAULT NULL,
   `montantApplique` decimal(5,2) NOT NULL,
-  PRIMARY KEY (`idVisiteur`,`mois`,`idFraisForfait`),
+  PRIMARY KEY (`idutilisateur`,`mois`,`idFraisForfait`),
   KEY `lignefraisforfait_ibfk_2` (`idFraisForfait`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -86,13 +86,13 @@ CREATE TABLE IF NOT EXISTS `lignefraisforfait` (
 
 CREATE TABLE IF NOT EXISTS `lignefraishorsforfait` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idVisiteur` char(4) NOT NULL,
+  `idutilisateur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `libelle` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `lignefraishorsforfait_ibfk_1` (`idVisiteur`,`mois`)
+  KEY `lignefraishorsforfait_ibfk_1` (`idutilisateur`,`mois`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
@@ -110,10 +110,10 @@ CREATE TABLE IF NOT EXISTS `statut` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `visiteur`
+-- Structure de la table `utilisateur`
 --
 
-CREATE TABLE IF NOT EXISTS `visiteur` (
+CREATE TABLE IF NOT EXISTS `utilisateur` (
   `id` char(4) NOT NULL,
   `nom` char(30) DEFAULT NULL,
   `prenom` char(30) DEFAULT NULL,
@@ -137,26 +137,26 @@ CREATE TABLE IF NOT EXISTS `visiteur` (
 --
 ALTER TABLE `fichefrais`
   ADD CONSTRAINT `fichefrais_ibfk_1` FOREIGN KEY (`idEtat`) REFERENCES `etat` (`id`),
-  ADD CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idVisiteur`) REFERENCES `visiteur` (`id`);
+  ADD CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idutilisateur`) REFERENCES `utilisateur` (`id`);
 
 --
 -- Contraintes pour la table `lignefraisforfait`
 --
 ALTER TABLE `lignefraisforfait`
-  ADD CONSTRAINT `lignefraisforfait_ibfk_1` FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES `fichefrais` (`idVisiteur`, `mois`),
+  ADD CONSTRAINT `lignefraisforfait_ibfk_1` FOREIGN KEY (`idutilisateur`, `mois`) REFERENCES `fichefrais` (`idutilisateur`, `mois`),
   ADD CONSTRAINT `lignefraisforfait_ibfk_2` FOREIGN KEY (`idFraisForfait`) REFERENCES `fraisforfait` (`id`);
 
 --
 -- Contraintes pour la table `lignefraishorsforfait`
 --
 ALTER TABLE `lignefraishorsforfait`
-  ADD CONSTRAINT `lignefraishorsforfait_ibfk_1` FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES `fichefrais` (`idVisiteur`, `mois`);
+  ADD CONSTRAINT `lignefraishorsforfait_ibfk_1` FOREIGN KEY (`idutilisateur`, `mois`) REFERENCES `fichefrais` (`idutilisateur`, `mois`);
 
 --
--- Contraintes pour la table `visiteur`
+-- Contraintes pour la table `utilisateur`
 --
-ALTER TABLE `visiteur`
-  ADD CONSTRAINT `visiteur_ibfk_1` FOREIGN KEY (`comptable`) REFERENCES `statut` (`idStatut`);
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`comptable`) REFERENCES `statut` (`idStatut`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

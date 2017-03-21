@@ -1,17 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * ContrÃ´leur par défaut de l'application
- * Si aucune spécification de contrÃ´leur n'est précisée dans l'URL du navigateur
- * c'est le contrÃ´leur par défaut qui sera invoqué. Son rÃ´le est :
+ * ContrÃ´leur par dï¿½faut de l'application
+ * Si aucune spï¿½cification de contrÃ´leur n'est prï¿½cisï¿½e dans l'URL du navigateur
+ * c'est le contrÃ´leur par dï¿½faut qui sera invoquï¿½. Son rÃ´le est :
  * 		+ d'orienter vers le bon contrÃ´leur selon la situation
  * 		+ de traiter le retour du formulaire de connexion 
 */
 class C_default extends CI_Controller {
 
 	/**
-	 * Fonctionnalité par défaut du contrÃ´leur. 
-	 * Vérifie l'existence d'une connexion :
+	 * Fonctionnalitï¿½ par dï¿½faut du contrÃ´leur. 
+	 * Vï¿½rifie l'existence d'une connexion :
 	 * Soit elle existe et on redirige vers le contrÃ´leur de VISITEUR, 
 	 * soit elle n'existe pas et on envoie la vue de connexion
 	*/
@@ -29,7 +29,7 @@ class C_default extends CI_Controller {
 		{
 			$login = $this->input->post('login');
 			$mdp = $this->input->post('mdp');
-			$compt=$this->dataAccess->getCompVisiteur($login, $mdp);
+			$compt=$this->dataAccess->getComputilisateur($login, $mdp);
 			
 			$this->load->helper('url');
 			$compt = $compt['comp'];
@@ -47,7 +47,7 @@ class C_default extends CI_Controller {
 	 * s'il est reconnu
 	*/
 	public function connecter () 
-	{	// TODO : conrÃ´ler que l'obtention des données postées ne rend pas d'erreurs 
+	{	// TODO : conrÃ´ler que l'obtention des donnï¿½es postï¿½es ne rend pas d'erreurs 
 
 		$this->load->model('authentif');
 		

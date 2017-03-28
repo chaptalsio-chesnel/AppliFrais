@@ -20,7 +20,7 @@ class DataAccess extends CI_Model {
 	 * @return l'id, le nom et le pr�nom sous la forme d'un tableau associatif 
 	*/
 	public function getInfosutilisateur($login, $mdp){
-		$req = "select utilisateur.id as id, utilisateur.nom as nom, utilisateur.prenom as prenom ,utilisateur.Comptable as Comptable
+		$req = "select utilisateur.id as id, utilisateur.nom as nom, utilisateur.prenom as prenom ,utilisateur.statut as statut
 				from utilisateur 
 				where utilisateur.login=? and utilisateur.mdp=?";
 		$rs = $this->db->query($req, array ($login, $mdp));
@@ -32,10 +32,10 @@ class DataAccess extends CI_Model {
 	 *
 	 * @param $login
 	 * @param $mdp
-	 * @return le comptable
+	 * @return le role
 	 */
 	public function getComputilisateur($login, $mdp){
-		$req = "select utilisateur.comptable as comp
+		$req = "select utilisateur.statut as statut
 				from utilisateur
 				where utilisateur.login=? and utilisateur.mdp=?";
 		$rs = $this->db->query($req, array ($login, $mdp));

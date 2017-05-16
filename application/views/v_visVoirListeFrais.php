@@ -6,6 +6,7 @@ $this->load->helper ( 'url' );
 	<div class="corpsForm">
 		<fieldset>
 			<legend>Eléments forfaitisés</legend>
+			<?php if($raison['raison'] != NULL) {echo "Raison du refus :". $raison['raison'];} ?>
 			<table>
 				<thead>
 					<th></th><th>Quantité</th><th>Montant*</th><th>Total</th>

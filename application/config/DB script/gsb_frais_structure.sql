@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `fichefrais` (
   `montantValide` decimal(10,2) DEFAULT NULL,
   `dateModif` date DEFAULT NULL,
   `idEtat` char(2) DEFAULT 'CR',
+  `raison` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`,`mois`),
   KEY `fichefrais_ibfk_1` (`idEtat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

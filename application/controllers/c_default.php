@@ -32,7 +32,7 @@ class C_default extends CI_Controller {
 			$compt=$this->dataAccess->getComputilisateur($login, $mdp);
 			
 			$this->load->helper('url');
-			$compt = $compt['comp'];
+			$compt = $compt['statut'];
 			if($compt==0){
 				redirect('/c_visiteur/');
 			}

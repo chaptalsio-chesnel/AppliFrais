@@ -233,11 +233,12 @@ class DataAccess extends CI_Model {
 				$this->majEtatFicheFrais($idUtilisateur, $mois,'VA');
 		}
 	}
-	public function refuserFiche($idUtilisateur,$mois){
+	public function refuserFiche($idUtilisateur,$mois,$raison){
 		//met à 'CL' son champs idEtat
 		$laFiche = $this->getLesInfosFicheFrais($idUtilisateur,$mois);
 		if($laFiche['idEtat']=='CL'){
 			$this->majEtatFicheFrais($idUtilisateur, $mois,'CR');
+			$this->majRaison($idUtilisateur, $mois,$raison);
 		}
 	}
 
@@ -329,6 +330,13 @@ class DataAccess extends CI_Model {
 				where fichefrais.idUtilisateur ='$idUtilisateur' and fichefrais.mois = '$mois'";
 		$this->db->simple_query($req);
 	}
+	public function majRaison($idUtilisateur,$mois,$raison){
+		$req = "update ficheFrais
+		set raison ='$raison', dateModif = now()
+		where fichefrais.idUtilisateur ='$idUtilisateur' and fichefrais.mois = '$mois'";
+		$this->db->simple_query($req);
+	}
+	
 	
 	/**
 	 * Obtient toutes les fiches (sans d�tail) d'un utilisateur donn� 
@@ -401,6 +409,14 @@ class DataAccess extends CI_Model {
 				set montantValide = '$totalFiche', dateModif = now() 
 				where fichefrais.idUtilisateur ='$idUtilisateur' and fichefrais.mois = '$mois'";
 		$this->db->simple_query($req);
+	}
+	public function getLaRaison($idUtilisateur,$mois){
+		$req = "select raison as raison
+		from  fichefrais
+		where fichefrais.idUtilisateur ='$idUtilisateur' and fichefrais.mois = '$mois'";
+		$rs = $this->db->query($req);
+		$laLigne = $rs->first_row('array');
+		return $laLigne;
 	}
 }
 ?>

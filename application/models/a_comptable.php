@@ -7,29 +7,29 @@ class A_comptable extends CI_Model {
         // Call the Model constructor
         parent::__construct();
 
-		// chargement du modÃ¨le d'accÃ¨s aux données qui est utile Ã  toutes les méthodes
+		// chargement du modÃ¨le d'accÃ¨s aux donnï¿½es qui est utile Ã  toutes les mï¿½thodes
 		$this->load->model('dataAccess');
     }
 
 	/**
 	 * Accueil du utilisateur
-	 * La fonction intÃ¨gre un mécanisme de contrÃ´le d'existence des 
+	 * La fonction intÃ¨gre un mï¿½canisme de contrÃ´le d'existence des 
 	 * fiches de frais sur les 6 derniers mois. 
-	 * Si l'une d'elle est absente, elle est créée
+	 * Si l'une d'elle est absente, elle est crï¿½ï¿½e
 	*/
 	public function accueil()
 	{	// TODO : ContrÃ´ler que toutes les valeurs de $unMois sont valides (chaine de caractÃ¨re dans la BdD)
 	
-		// chargement du modÃ¨le contenant les fonctions génériques
+		// chargement du modÃ¨le contenant les fonctions gï¿½nï¿½riques
 		$this->load->model('functionsLib');
 
 		// obtention de la liste des 6 derniers mois (y compris celui ci)
 		$lesMois = $this->functionsLib->getSixDerniersMois();
 		
-		// obtention de l'id de l'utilisateur mémorisé en session
+		// obtention de l'id de l'utilisateur mï¿½morisï¿½ en session
 		$idutilisateur = $this->session->userdata('idUser');
 		
-		// contrÃ´le de l'existence des 6 derniÃ¨res fiches et création si nécessaire
+		// contrÃ´le de l'existence des 6 derniÃ¨res fiches et crï¿½ation si nï¿½cessaire
 		foreach ($lesMois as $unMois){
 			if(!$this->dataAccess->ExisteFiche($idutilisateur, $unMois)) $this->dataAccess->creeFiche($idutilisateur, $unMois);
 		}
@@ -38,14 +38,14 @@ class A_comptable extends CI_Model {
 	}
 	
 	/**
-	 * Liste les fiches existantes du utilisateur connecté et 
-	 * donne accÃ¨s aux fonctionnalités associées
+	 * Liste les fiches existantes du utilisateur connectï¿½ et 
+	 * donne accÃ¨s aux fonctionnalitï¿½s associï¿½es
 	 *
 	 * @param $idutilisateur : l'id du utilisateur 
-	 * @param $message : message facultatif destiné Ã  notifier l'utilisateur du résultat d'une action précédemment exécutée
+	 * @param $message : message facultatif destinï¿½ Ã  notifier l'utilisateur du rï¿½sultat d'une action prï¿½cï¿½demment exï¿½cutï¿½e
 	*/
 	public function lesFiches ($idutilisateur, $message=null)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
 	
 		$idutilisateur = $this->session->userdata('idUser');
 
@@ -54,7 +54,7 @@ class A_comptable extends CI_Model {
 		$this->templates->load('t_comptable', 'v_compLesFiches', $data);	
 	}	
 	public function lesSuivi ($idutilisateur, $message=null)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
 	
 	$idutilisateur = $this->session->userdata('idUser');
 	
@@ -63,13 +63,13 @@ class A_comptable extends CI_Model {
 	$this->templates->load('t_comptable', 'v_compSuiviFiche', $data);
 	}
 	/**
-	 * Présente le détail de la fiche sélectionnée 
+	 * Prï¿½sente le dï¿½tail de la fiche sï¿½lectionnï¿½e 
 	 * 
 	 * @param $idutilisateur : l'id du utilisateur 
 	 * @param $mois : le mois de la fiche Ã  modifier 
 	*/
 	public function voirFiche($idutilisateur, $mois)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
 
 		$data['numAnnee'] = substr( $mois,0,4);
 		$data['numMois'] = substr( $mois,4,2);
@@ -80,15 +80,15 @@ class A_comptable extends CI_Model {
 	}
 
 	/**
-	 * Présente le détail de la fiche sélectionnée et donne 
-	 * accés Ã  la modification du contenu de cette fiche.
+	 * Prï¿½sente le dï¿½tail de la fiche sï¿½lectionnï¿½e et donne 
+	 * accï¿½s Ã  la modification du contenu de cette fiche.
 	 * 
 	 * @param $idutilisateur : l'id du utilisateur 
 	 * @param $mois : le mois de la fiche Ã  modifier 
-	 * @param $message : message facultatif destiné Ã  notifier l'utilisateur du résultat d'une action précédemment exécutée
+	 * @param $message : message facultatif destinï¿½ Ã  notifier l'utilisateur du rï¿½sultat d'une action prï¿½cï¿½demment exï¿½cutï¿½e
 	*/
 	public function modCompFiche($idutilisateur, $mois, $message=null)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
 
 		$data['notify'] = $message;
 		$data['util'] = $idutilisateur;
@@ -100,7 +100,7 @@ class A_comptable extends CI_Model {
 		$this->templates->load('t_comptable', 'v_compModListeFrais', $data);
 	}
 	public function voirCompFiche($idutilisateur, $mois, $message=null)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
 	
 	$data['notify'] = $message;
 	$data['util'] = $idutilisateur;
@@ -113,69 +113,79 @@ class A_comptable extends CI_Model {
 	}
 
 	/**
-	 * Signe une fiche de frais en changeant son état
+	 * Signe une fiche de frais en changeant son ï¿½tat
 	 * 
 	 * @param $idutilisateur : l'id du utilisateur 
 	 * @param $mois : le mois de la fiche Ã  signer
 	*/
 	public function signeFiche($idutilisateur, $mois)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
-		// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
+		// TODO : intï¿½grer une fonctionnalitï¿½ d'impression PDF de la fiche
 
 	    $this->dataAccess->signeFiche($idutilisateur, $mois);
 	}
 	public function mpFiche($idutilisateur, $mois)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
-	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
+	// TODO : intï¿½grer une fonctionnalitï¿½ d'impression PDF de la fiche
 	
 	$this->dataAccess->mpFiche($idutilisateur, $mois);
 	}
 	public function rembourserFiche($idutilisateur, $mois)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
-	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
+	// TODO : intï¿½grer une fonctionnalitï¿½ d'impression PDF de la fiche
 	
 	$this->dataAccess->rembourserFiche($idutilisateur, $mois);
 	}
 
 	public function validerFiche($idutilisateur, $mois)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
-	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
+	// TODO : intï¿½grer une fonctionnalitï¿½ d'impression PDF de la fiche
 	
 	$this->dataAccess->validerFiche($idutilisateur, $mois);
 	}
 	
 	public function refuserFiche($idutilisateur, $mois)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
-	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
-	
-	$this->dataAccess->refuserFiche($idutilisateur, $mois);
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
+	// TODO : intï¿½grer une fonctionnalitï¿½ d'impression PDF de la fiche
+		$data['util'] = $idutilisateur;
+		$data['numAnnee'] = substr( $mois,0,4);
+		$data['numMois'] = substr( $mois,4,2);
+		$data['mois'] = $mois;
+		
+		$this->templates->load('t_comptable', 'v_compRefus', $data);
+	//$this->dataAccess->refuserFiche($idutilisateur, $mois);
 	}
+	public function refusFiche($idutilisateur, $mois,$raison)
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
+	// TODO : intï¿½grer une fonctionnalitï¿½ d'impression PDF de la fiche
 	
+	$this->dataAccess->refuserFiche($idutilisateur, $mois,$raison);
+	}
 	/**
-	 * Modifie les quantités associées aux frais forfaitisés dans une fiche donnée
+	 * Modifie les quantitï¿½s associï¿½es aux frais forfaitisï¿½s dans une fiche donnï¿½e
 	 * 
 	 * @param $idutilisateur : l'id du utilisateur 
-	 * @param $mois : le mois de la fiche concernée
-	 * @param $lesFrais : les quantités liées Ã  chaque type de frais, sous la forme d'un tableau
+	 * @param $mois : le mois de la fiche concernï¿½e
+	 * @param $lesFrais : les quantitï¿½s liï¿½es Ã  chaque type de frais, sous la forme d'un tableau
 	*/
 	public function majForfait($idutilisateur, $mois, $lesFrais)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
-		// TODO : valider les données contenues dans $lesFrais ...
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
+		// TODO : valider les donnï¿½es contenues dans $lesFrais ...
 		
 		$this->dataAccess->majLignesForfait($idutilisateur,$mois,$lesFrais);
 		$this->dataAccess->recalculeMontantFiche($idutilisateur,$mois);
 	}
 
 	/**
-	 * Ajoute une ligne de frais hors forfait dans une fiche donnée
+	 * Ajoute une ligne de frais hors forfait dans une fiche donnï¿½e
 	 * 
 	 * @param $idutilisateur : l'id du utilisateur 
-	 * @param $mois : le mois de la fiche concernée
-	 * @param $lesFrais : les quantités liées Ã  chaque type de frais, sous la forme d'un tableau
+	 * @param $mois : le mois de la fiche concernï¿½e
+	 * @param $lesFrais : les quantitï¿½s liï¿½es Ã  chaque type de frais, sous la forme d'un tableau
 	*/
 	public function ajouteFrais($idutilisateur, $mois, $uneLigne)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
-		// TODO : valider la donnée contenues dans $uneLigne ...
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session
+		// TODO : valider la donnï¿½e contenues dans $uneLigne ...
 
 		$dateFrais = $uneLigne['dateFrais'];
 		$libelle = $uneLigne['libelle'];
@@ -185,14 +195,14 @@ class A_comptable extends CI_Model {
 	}
 
 	/**
-	 * Supprime une ligne de frais hors forfait dans une fiche donnée
+	 * Supprime une ligne de frais hors forfait dans une fiche donnï¿½e
 	 * 
 	 * @param $idutilisateur : l'id du utilisateur 
-	 * @param $mois : le mois de la fiche concernée
+	 * @param $mois : le mois de la fiche concernï¿½e
 	 * @param $idLigneFrais : l'id de la ligne Ã  supprimer
 	*/
 	public function supprLigneFrais($idutilisateur, $mois, $idLigneFrais)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session et cohérents entre eux
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohï¿½rents avec ceux mï¿½morisï¿½s en session et cohï¿½rents entre eux
 
 	    $this->dataAccess->supprimerLigneHorsForfait($idLigneFrais);
 	}

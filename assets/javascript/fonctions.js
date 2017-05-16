@@ -93,3 +93,10 @@
 
 	    return result;
 	}
+	function maxL(element, max){
+	    value = element.value;
+	    max = parseInt(max);
+	    if(value.length > max){
+	        element.value = value.substr(0, max);
+	    }
+	}

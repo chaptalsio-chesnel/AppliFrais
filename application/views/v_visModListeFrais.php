@@ -11,17 +11,23 @@ $this->load->helper ( 'url' );
 		<div class="corpsForm">
 			<fieldset>
 				<legend>Eléments forfaitisés</legend>
+				<?php echo "Raison du refus :". $raison['raison']; ?>
+				
 				<table>
 					<thead>
 						<th></th><th>Quantité</th><th>Montant*</th><th>Total</th>
 					</thead>
 					<tbody>
 						<?php
+						
 						foreach ( $lesFraisForfait as $unFrais ) {
 							$idFrais = $unFrais ['idfrais'];
 							$libelle = $unFrais ['libelle'];
 							$quantite = $unFrais ['quantite'];
 							$montant = $unFrais ['montant'];
+							
+							
+							
 							
 							echo '<tr>
 									<td><label for="' . $idFrais . '">' . $libelle . '</label></td>

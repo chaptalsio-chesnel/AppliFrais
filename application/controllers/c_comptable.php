@@ -77,7 +77,7 @@ class C_comptable extends CI_Controller {
 				// on mémorise le mois de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
 				// obtention de l'id utilisateur courant
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 
 				$this->a_comptable->voirFiche($idVisiteur, $mois);
 			}
@@ -209,7 +209,7 @@ class C_comptable extends CI_Controller {
 				$mois = $this->session->userdata('mois');
 
 				// obtention des données postées
-				$lesFrais = $this->input->post('lesFrais');
+				$lesFrais = $this->input->post('lesMontant');
 
 				$this->a_comptable->majForfait($idVisiteur, $mois, $lesFrais);
 

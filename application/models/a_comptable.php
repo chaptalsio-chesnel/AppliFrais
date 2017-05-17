@@ -74,9 +74,9 @@ class A_comptable extends CI_Model {
 		$data['numAnnee'] = substr( $mois,0,4);
 		$data['numMois'] = substr( $mois,4,2);
 		$data['lesFraisHorsForfait'] = $this->dataAccess->getLesLignesHorsForfait($idutilisateur,$mois);
-		$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfait($idutilisateur,$mois);		
+		$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfaitComp($idutilisateur,$mois);		
 
-		$this->templates->load('t_comptable', 'v_visVoirListeFrais', $data);
+		$this->templates->load('t_comptable', 'v_compVoirFrais', $data);
 	}
 
 	/**
@@ -95,7 +95,7 @@ class A_comptable extends CI_Model {
 		$data['numAnnee'] = substr( $mois,0,4);
 		$data['numMois'] = substr( $mois,4,2);
 		$data['lesFraisHorsForfait'] = $this->dataAccess->getLesLignesHorsForfait($idutilisateur,$mois);
-		$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfait($idutilisateur,$mois);		
+		$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfaitComp($idutilisateur,$mois);		
 
 		$this->templates->load('t_comptable', 'v_compModListeFrais', $data);
 	}

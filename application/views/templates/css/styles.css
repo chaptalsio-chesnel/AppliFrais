@@ -313,3 +313,6 @@ table.listeLegere th.eltForfait{
   height : 28px;
   float : left;
 }
+.input{
+	display:none;
+}

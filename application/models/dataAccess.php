@@ -105,6 +105,16 @@ class DataAccess extends CI_Model {
 		$lesLignes = $rs->result_array();
 		return $lesLignes; 
 	}
+	public function getLesLignesForfaitComp($idUtilisateur, $mois){
+		$req = "select fraisforfait.id as idfrais, fraisforfait.libelle as libelle, lignefraisforfait.quantite as quantite, lignefraisforfait.montantApplique as montant
+		from lignefraisforfait inner join fraisforfait
+		on fraisforfait.id = lignefraisforfait.idfraisforfait
+		where lignefraisforfait.idUtilisateur ='$idUtilisateur' and lignefraisforfait.mois='$mois'
+		order by lignefraisforfait.idfraisforfait";
+		$rs = $this->db->query($req);
+		$lesLignes = $rs->result_array();
+		return $lesLignes;
+	}
 	
 		
 	/**
@@ -132,7 +142,7 @@ class DataAccess extends CI_Model {
 		foreach($lesCles as $unIdFrais){
 			$qte = $lesFrais[$unIdFrais];
 			$req = "update lignefraisforfait 
-					set lignefraisforfait.quantite = $qte
+					set lignefraisforfait.montantApplique = $qte
 					where lignefraisforfait.idUtilisateur = '$idUtilisateur' 
 						and lignefraisforfait.mois = '$mois'
 						and lignefraisforfait.idfraisforfait = '$unIdFrais'";

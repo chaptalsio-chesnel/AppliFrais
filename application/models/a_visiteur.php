@@ -66,7 +66,7 @@ class A_visiteur extends CI_Model {
 		$data['numAnnee'] = substr( $mois,0,4);
 		$data['numMois'] = substr( $mois,4,2);
 		$data['lesFraisHorsForfait'] = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
-		$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfait($idVisiteur,$mois);
+		$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfaitVis($idVisiteur,$mois);
 		$data['raison'] = $this->dataAccess->getLaRaison($idVisiteur,$mois);
 		
 		$this->templates->load('t_visiteur', 'v_visVoirListeFrais', $data);
@@ -116,7 +116,7 @@ class A_visiteur extends CI_Model {
 	{	// TODO : s'assurer que les paramètres reçus sont coh�rents avec ceux m�moris�s en session
 		// TODO : valider les donn�es contenues dans $lesFrais ...
 		
-		$this->dataAccess->majLignesForfait($idVisiteur,$mois,$lesFrais);
+		$this->dataAccess->majLignesForfaitVis($idVisiteur,$mois,$lesFrais);
 		$this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
 	}
 

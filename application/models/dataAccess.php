@@ -95,8 +95,8 @@ class DataAccess extends CI_Model {
 	 * @param $mois sous la forme aaaamm
 	 * @return l'id, le libelle et la quantit� sous la forme d'un tableau associatif 
 	*/
-	public function getLesLignesForfait($idUtilisateur, $mois){
-		$req = "select fraisforfait.id as idfrais, fraisforfait.libelle as libelle, lignefraisforfait.quantite as quantite, fraisforfait.montant 
+	public function getLesLignesForfaitVis($idUtilisateur, $mois){
+		$req = "select fraisforfait.id as idfrais, fraisforfait.libelle as libelle, lignefraisforfait.quantite as quantite, lignefraisforfait.montantApplique as montant
 				from lignefraisforfait inner join fraisforfait 
 					on fraisforfait.id = lignefraisforfait.idfraisforfait
 				where lignefraisforfait.idUtilisateur ='$idUtilisateur' and lignefraisforfait.mois='$mois' 
@@ -146,6 +146,18 @@ class DataAccess extends CI_Model {
 					where lignefraisforfait.idUtilisateur = '$idUtilisateur' 
 						and lignefraisforfait.mois = '$mois'
 						and lignefraisforfait.idfraisforfait = '$unIdFrais'";
+			$this->db->simple_query($req);
+		}
+	}
+	public function majLignesForfaitVis($idUtilisateur, $mois, $lesFrais){
+		$lesCles = array_keys($lesFrais);
+		foreach($lesCles as $unIdFrais){
+			$qte = $lesFrais[$unIdFrais];
+			$req = "update lignefraisforfait
+			set lignefraisforfait.quantite = $qte
+			where lignefraisforfait.idUtilisateur = '$idUtilisateur'
+			and lignefraisforfait.mois = '$mois'
+			and lignefraisforfait.idfraisforfait = '$unIdFrais'";
 			$this->db->simple_query($req);
 		}
 	}
